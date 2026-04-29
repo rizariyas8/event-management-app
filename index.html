@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Event Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>Smart Event Management</h1>
+
+    <div style="display:flex; align-items:center; gap:10px;">
+
+      <!-- 🔔 NOTIFICATION UI ONLY -->
+      <div id="notifContainer" style="display:none; position:relative;">
+        
+        <div id="notifIcon" style="cursor:pointer;">
+          🔔 <span id="notifCount" style="color:red; font-weight:bold;">0</span>
+        </div>
+
+        <div id="notifBox"
+        style="
+          display:none;
+          position:absolute;
+          right:0;
+          top:30px;
+          background:white;
+          width:250px;
+          max-height:300px;
+          overflow:auto;
+          box-shadow:0 0 10px rgba(0,0,0,0.2);
+          padding:10px;
+          color:black;
+          font-size:14px;
+          font-family: Arial, sans-serif;
+          z-index:999;
+        ">
+        </div>
+
+
+      </div>
+
+      <button id="createBtn" onclick="window.location.href='create.html'">+ Create Event</button>
+      <button id="myEventsBtn" onclick="window.location.href='my-events.html'">My Events</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Search events...">
+  </div>
+
+  <div id="events"></div>
+
+  <!-- PARTICIPANTS BOX -->
+  <div id="participantsBox" style="display:none; padding:20px;">
+    <h2>Participants</h2>
+    <div id="participantsList"></div>
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>

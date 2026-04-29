@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Event</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+  <div class="form-box">
+
+    <h1 id="formTitle">Create Event</h1>
+
+    <!-- MODE INDICATOR (NEW - UI FIX) -->
+    <p id="modeText" style="text-align:center; color:gray;"></p>
+
+    <!-- FORM -->
+    <form id="eventForm">
+
+      <label>Event Name</label>
+      <input id="title" type="text">
+
+      <label>Date</label>
+      <input id="date" type="date">
+
+      <label>Category</label>
+      <select id="category">
+        <option>Workshop</option>
+        <option>Seminar</option>
+        <option>Hackathon</option>
+      </select>
+
+      <label>Description</label>
+      <textarea id="description"></textarea>
+
+      <label>Image</label>
+      <input type="file" id="image">
+
+      <img id="previewImg" style="width:100%; display:none; margin-top:10px;">
+
+      <button type="submit" id="submitBtn">Create Event</button>
+
+    </form>
+
+    <a href="index.html">
+      <button type="button">Back</button>
+    </a>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+
+<!-- ================= EDIT PREFILL SCRIPT (FIXED UI) ================= -->
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  const editData = JSON.parse(localStorage.getItem("editEvent"));
+
+  const title = document.getElementById("title");
+  const date = document.getElementById("date");
+  const category = document.getElementById("category");
+  const description = document.getElementById("description");
+  const img = document.getElementById("previewImg");
+  const submitBtn = document.getElementById("submitBtn");
+
+  if (editData) {
+
+    // UI MODE CHANGE
+    document.getElementById("formTitle").innerText = "Edit Event";
+    document.getElementById("modeText").innerText = "You are editing an existing event";
+
+    if (submitBtn) submitBtn.innerText = "Update Event";
+
+    // PREFILL DATA
+    if (title) title.value = editData.title || "";
+    if (date) date.value = editData.date || "";
+    if (category) category.value = editData.category || "";
+    if (description) description.value = editData.description || "";
+
+    if (img && editData.image) {
+      img.src = editData.image;
+      img.style.display = "block";
+    }
+
+  } else {
+
+    // CREATE MODE
+    document.getElementById("formTitle").innerText = "Create Event";
+    document.getElementById("modeText").innerText = "Create a new event";
+
+    if (submitBtn) submitBtn.innerText = "Create Event";
+  }
+
+});
+</script>
+
+</body>
+</html>

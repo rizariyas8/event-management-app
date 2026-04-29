@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+  <div class="form-box">
+
+    <h2 style="text-align:center;">Login</h2>
+
+    <label>Name</label>
+    <input id="name" placeholder="Enter your name">
+
+    <label>Email</label>
+    <input id="email" type="email" placeholder="Enter your email">
+
+    <label>Role</label>
+    <select id="role">
+      <option value="user">User</option>
+      <option value="organizer">Organizer</option>
+    </select>
+
+    <button class="primary-btn" onclick="login()">Login</button>
+
+    <div class="divider">OR</div>
+
+    <button class="ms-login-btn" onclick="handleMicrosoftLogin()">
+      <img src="https://img.icons8.com/color/16/microsoft.png" style="vertical-align: middle;" />
+      Sign in with Microsoft
+    </button>
+
+  </div>
+</div>
+
+<!-- ✅ LINK TO app.js -->
+<script src="app.js"></script>
+
+</body>
+</html>
