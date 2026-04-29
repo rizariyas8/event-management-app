@@ -60,6 +60,7 @@ async function loadEvents() {
 
     await loadRegisteredEvents();
     displayEvents(events);
+    setupSearch();
 
   } catch (err) {
     console.error("Load Events Error:", err);
@@ -67,9 +68,8 @@ async function loadEvents() {
   
 }
 /* ================= search ================= */
-document.addEventListener("DOMContentLoaded", () => {
+function setupSearch() {
   const searchInput = document.getElementById("search");
-
   if (!searchInput) return;
 
   searchInput.addEventListener("input", (e) => {
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     displayEvents(filtered);
   });
-});
+}
 
 
 
