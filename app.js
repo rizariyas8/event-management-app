@@ -64,7 +64,33 @@ async function loadEvents() {
   } catch (err) {
     console.error("Load Events Error:", err);
   }
+  
 }
+/* ================= search ================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("search");
+
+  if (!searchInput) return;
+
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase().trim();
+
+    if (!value) {
+      displayEvents(events);
+      return;
+    }
+
+    const filtered = events.filter(event =>
+      (event.title || "").toLowerCase().includes(value) ||
+      (event.category || "").toLowerCase().includes(value) ||
+      (event.description || "").toLowerCase().includes(value)
+    );
+
+    displayEvents(filtered);
+  });
+});
+
+
 
 /* ================= REGISTERED ================= */
 async function loadRegisteredEvents() {
