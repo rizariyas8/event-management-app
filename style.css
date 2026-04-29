@@ -226,14 +226,6 @@ button:disabled {
   border-bottom: 1px solid #ddd;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background: #3e4f1c;
-  color: white;
-}
 
 /* 🔥 NEW */
 .ms-login-btn {
@@ -259,4 +251,17 @@ button:disabled {
   text-align: center;
   margin: 10px 0;
   color: #888;
+}
+
+#myEvents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+#myEvents .event-card {
+  width: 90%;
+  max-width: 500px;
 }
