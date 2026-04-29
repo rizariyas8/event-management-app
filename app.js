@@ -247,35 +247,47 @@ async function registerEvent(eventId) {
 
 /* ================= PARTICIPANTS ================= */
 async function viewParticipants(eventId) {
+
+  console.log("EVENT ID:", eventId);
+
   const box = document.getElementById("participantsBox");
   const list = document.getElementById("participantsList");
 
-  if (!box || !list) return;
-
   box.style.display = "block";
 
-  try {
-    const res = await fetch(
-      `https://event-api-riza-gsfsabc5cjc4g2am.eastasia-01.azurewebsites.net/api/getEventRegistrations?eventId=${eventId}`
-    );
+  const url = `https://event-api-riza-gsfsabc5cjc4g2am.eastasia-01.azurewebsites.net/api/getEventRegistrations?eventId=${eventId}`;
 
-    let data = [];
-    try {
-      data = await res.json();
-    } catch {
-      data = [];
+  console.log("API URL:", url);
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    console.log("RESPONSE DATA:", data);
+
+    if (!Array.isArray(data)) {
+      list.innerHTML = "Invalid response";
+      return;
     }
 
-    list.innerHTML = (Array.isArray(data) ? data : []).map((p, i) => `
+    if (data.length === 0) {
+      list.innerHTML = "No participants yet";
+      return;
+    }
+
+    list.innerHTML = data.map((p, i) => `
       <div style="padding:8px;border-bottom:1px solid #ddd;">
-        ${i + 1}. ${p.userId}
+        ${i + 1}. ${p.userId} - ${p.email}
       </div>
     `).join("");
 
   } catch (err) {
-    console.error("Participants Error:", err);
+    console.error("FETCH ERROR:", err);
+    list.innerHTML = "Error loading participants";
   }
 }
+
+
 
 /* ================= IMAGE ================= */
 document.addEventListener("change", function (e) {
